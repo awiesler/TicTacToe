@@ -1,49 +1,45 @@
 package ticTac;
 
 public class game {
-	public int GameCounter;
 	
+	private Boolean gameFinished;
 
 	public boolean gameStatus(String tf1, String tf2, String tf3, String tf4, String tf5, String tf6, String tf7, String tf8, String tf9)
-	{
-		Boolean gameFinished = false;
-		String pruefen1 = tf1 + tf2 + tf3;
-		String pruefen2 = tf4 + tf5 + tf6;
-		String pruefen3 = tf7 + tf8 + tf9;
-		String pruefen4 = tf1 + tf4 + tf7;
-		String pruefen5 = tf2 + tf5 + tf8;
-		String pruefen6 = tf3 + tf6 + tf9;
-		String pruefen7 = tf1 + tf5 + tf9;
-		String pruefen8 = tf3 + tf5 + tf7;
+	{	
+		
 
-		for(int i = 0; i<9; i++)
-		{
-			String pruefenfunktion = "pruefen" + i;
-			pruefenSwitch(pruefenfunktion);
+		if(tf1 == "X" && tf2 == "X" && tf3 == "X" || tf1 == "O" && tf2 == "O" && tf3 == "O") {
+			gameFinished = true;
 		}
-		//String playerWinMessage = "Player .. wins!";
+		else if(tf4 == "X" && tf5 == "X" && tf6 == "X" || tf4 == "O" && tf5 == "O" && tf6 == "O") {
+			gameFinished = true;
+		}
+		else if(tf7 == "X" && tf8 == "X" && tf9 == "X" || tf7 == "O" && tf8 == "O" && tf9 == "O") {
+			gameFinished = true;
+		}
+		else if(tf1 == "X" && tf4 == "X" && tf7 == "X" || tf1 == "O" && tf4 == "O" && tf7 == "O") {
+			gameFinished = true;
+		}
+		else if(tf2 == "X" && tf5 == "X" && tf8 == "X" || tf2 == "O" && tf5 == "O" && tf8 == "O") {
+			gameFinished = true;
+		}
+		else if(tf3 == "X" && tf6 == "X" && tf9 == "X" || tf3 == "O" && tf6 == "O" && tf9 == "O") {
+			gameFinished = true;
+		}
+		else if(tf1 == "X" && tf5 == "X" && tf9 == "X" || tf1 == "O" && tf5 == "O" && tf9 == "O") {
+			gameFinished = true;
+		}
+		else if(tf3 == "X" && tf5 == "X" && tf7 == "X" || tf3 == "O" && tf5 == "O" && tf7 == "O") {
+			gameFinished = true;
+		}
+		else {
+			gameFinished = false;
+		}
 		
 		return gameFinished;
 	}
 	
-	public boolean pruefenSwitch(String varPruefen)
-	{
-
-		Boolean gameFinished = false;
-		
-		switch(varPruefen)
-		{
-		case ("XXX"):
-				gameFinished = true;			
-				break;
-		case ("OOO"):
-				gameFinished = true;
-		System.out.println("CHECK");
-				break;
-		}
+	public Boolean getGameFinished() {
 		return gameFinished;
-		
 	}
-
-
 }

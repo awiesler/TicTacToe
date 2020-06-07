@@ -1,6 +1,7 @@
 package ticTac;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,20 +14,29 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class FensterKlasse extends JFrame {
 
 	game backend = new game();
+	player player = new player();
 	private JPanel contentPane;
-	private JTextField tf1;
-	private JTextField tf2;
-	private JTextField tf3;
-	private JTextField tf4;
-	private JTextField tf5;
-	private JTextField tf6;
-	private JTextField tf7;
-	private JTextField tf8;
-	private JTextField tf9;
+	private JButton btn1;
+	private JButton btn2;
+	private JButton btn3;
+	private JButton btn4;
+	private JButton btn5;
+	private JButton btn6;
+	private JButton btn7;
+	private JButton btn8;
+	private JButton btn9;
+	private JTextField tfAusgabe;
+	private JTextField tfAusgabe2;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -47,6 +57,35 @@ public class FensterKlasse extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public void Methode(JButton text) {
+		if(backend.gameStatus(btn1.getText(), btn2.getText(), btn3.getText(), btn4.getText(), btn5.getText(), btn6.getText(), btn7.getText(), btn8.getText(), btn9.getText())) {
+			tfAusgabe.setText("Gewonnen");
+			tfAusgabe2.setText("neues Spiel?");
+		}
+		else if(player.getGameCounter() == 9) {
+			tfAusgabe.setText("Unentschieden");
+			btnNewButton.setBackground(Color.green);
+			tfAusgabe2.setText("neues Spiel?");
+		}
+		else {
+			text.setText(player.turn());
+		}
+	}
+	public void neuesSpiel() {
+		tfAusgabe.setText("");
+		tfAusgabe2.setText("");
+		btn1.setText("");
+		btn2.setText("");
+		btn3.setText("");
+		btn4.setText("");
+		btn5.setText("");
+		btn6.setText("");
+		btn7.setText("");
+		btn8.setText("");
+		btn9.setText("");
+		btnNewButton.setBackground(btn1.getBackground());
+		player.setGameCounter(0);
+	}
 	public FensterKlasse() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 735, 570);
@@ -60,131 +99,130 @@ public class FensterKlasse extends JFrame {
 		lblTicTacToe.setBounds(261, 11, 213, 70);
 		contentPane.add(lblTicTacToe);
 		
-		JButton btnNewButton = new JButton("new game");
+		btnNewButton = new JButton("new game");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				neuesSpiel();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnNewButton.setBounds(261, 461, 159, 59);
 		contentPane.add(btnNewButton);
 		
 		JButton btnExit = new JButton("exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnExit.setBounds(502, 461, 159, 59);
 		contentPane.add(btnExit);
 		
-		tf1 = new JTextField();
-		tf1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn1 = new JButton("");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn1);
 			}
 		});
-		tf1.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf1.setHorizontalAlignment(SwingConstants.CENTER);
-		tf1.setBounds(69, 111, 100, 100);
-		contentPane.add(tf1);
-		tf1.setColumns(10);
+		btn1.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn1.setBounds(63, 103, 100, 100);
+		contentPane.add(btn1);
 		
-		tf2 = new JTextField();
-		tf2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn2 = new JButton("");
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn2);
 			}
 		});
-		tf2.setHorizontalAlignment(SwingConstants.CENTER);
-		tf2.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf2.setColumns(10);
-		tf2.setBounds(179, 111, 100, 100);
-		contentPane.add(tf2);
+		btn2.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn2.setBounds(173, 103, 100, 100);
+		contentPane.add(btn2);
 		
-		tf3 = new JTextField();
-		tf3.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn3 = new JButton("");
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn3);
 			}
 		});
-		tf3.setHorizontalAlignment(SwingConstants.CENTER);
-		tf3.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf3.setColumns(10);
-		tf3.setBounds(289, 111, 100, 100);
-		contentPane.add(tf3);
+		btn3.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn3.setBounds(283, 103, 100, 100);
+		contentPane.add(btn3);
 		
-		tf6 = new JTextField();
-		tf6.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn4 = new JButton("");
+		btn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn4);
 			}
 		});
-		tf6.setHorizontalAlignment(SwingConstants.CENTER);
-		tf6.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf6.setColumns(10);
-		tf6.setBounds(289, 222, 100, 100);
-		contentPane.add(tf6);
+		btn4.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn4.setBounds(63, 214, 100, 100);
+		contentPane.add(btn4);
 		
-		tf4 = new JTextField();
-		tf4.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn5 = new JButton("");
+		btn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn5);
 			}
 		});
-		tf4.setHorizontalAlignment(SwingConstants.CENTER);
-		tf4.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf4.setColumns(10);
-		tf4.setBounds(69, 222, 100, 100);
-		contentPane.add(tf4);
+		btn5.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn5.setBounds(173, 214, 100, 100);
+		contentPane.add(btn5);
 		
-		tf5 = new JTextField();
-		tf5.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn6 = new JButton("");
+		btn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn6);
 			}
 		});
-		tf5.setHorizontalAlignment(SwingConstants.CENTER);
-		tf5.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf5.setColumns(10);
-		tf5.setBounds(179, 222, 100, 100);
-		contentPane.add(tf5);
+		btn6.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn6.setBounds(283, 214, 100, 100);
+		contentPane.add(btn6);
 		
-		tf9 = new JTextField();
-		tf9.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn7 = new JButton("");
+		btn7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn7);
 			}
 		});
-		tf9.setHorizontalAlignment(SwingConstants.CENTER);
-		tf9.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf9.setColumns(10);
-		tf9.setBounds(289, 333, 100, 100);
-		contentPane.add(tf9);
+		btn7.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn7.setBounds(63, 322, 100, 100);
+		contentPane.add(btn7);
 		
-		tf7 = new JTextField();
-		tf7.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn8 = new JButton("");
+		btn8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn8);
 			}
 		});
-		tf7.setHorizontalAlignment(SwingConstants.CENTER);
-		tf7.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf7.setColumns(10);
-		tf7.setBounds(69, 333, 100, 100);
-		contentPane.add(tf7);
+		btn8.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn8.setBounds(173, 322, 100, 100);
+		contentPane.add(btn8);
 		
-		tf8 = new JTextField();
-		tf8.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				backend.gameStatus(tf1.getText(), tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf9.getText());
+		btn9 = new JButton("");
+		btn9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Methode(btn9);
 			}
 		});
-		tf8.setHorizontalAlignment(SwingConstants.CENTER);
-		tf8.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		tf8.setColumns(10);
-		tf8.setBounds(179, 333, 100, 100);
-		contentPane.add(tf8);
+		btn9.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		btn9.setBounds(283, 322, 100, 100);
+		contentPane.add(btn9);
+		
+		tfAusgabe = new JTextField();
+		tfAusgabe.setFont(new Font("Tahoma", Font.PLAIN, 31));
+		tfAusgabe.setBorder(null);
+		tfAusgabe.setBackground(SystemColor.menu);
+		tfAusgabe.setBounds(437, 103, 243, 100);
+		contentPane.add(tfAusgabe);
+		tfAusgabe.setColumns(10);
+		
+		tfAusgabe2 = new JTextField();
+		tfAusgabe2.setFont(new Font("Tahoma", Font.PLAIN, 31));
+		tfAusgabe2.setColumns(10);
+		tfAusgabe2.setBorder(null);
+		tfAusgabe2.setBackground(SystemColor.menu);
+		tfAusgabe2.setBounds(437, 214, 243, 100);
+		contentPane.add(tfAusgabe2);
 	}
 }
