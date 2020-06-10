@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class FensterKlasse extends JFrame {
 
@@ -35,8 +37,8 @@ public class FensterKlasse extends JFrame {
 	private JButton btn8;
 	private JButton btn9;
 	private JTextField tfAusgabe;
-	private JTextField tfAusgabe2;
 	private JButton btnNewButton;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -58,22 +60,26 @@ public class FensterKlasse extends JFrame {
 	 * Create the frame.
 	 */
 	public void Methode(JButton text) {
+
+		if(backend.getGameFinished()) {
+			
+		}
+		else{
+			text.setText(player.turn());
+		}
 		if(backend.gameStatus(btn1.getText(), btn2.getText(), btn3.getText(), btn4.getText(), btn5.getText(), btn6.getText(), btn7.getText(), btn8.getText(), btn9.getText())) {
 			tfAusgabe.setText("Gewonnen");
-			tfAusgabe2.setText("neues Spiel?");
 		}
 		else if(player.getGameCounter() == 9) {
 			tfAusgabe.setText("Unentschieden");
 			btnNewButton.setBackground(Color.green);
-			tfAusgabe2.setText("neues Spiel?");
 		}
 		else {
-			text.setText(player.turn());
+			
 		}
 	}
 	public void neuesSpiel() {
 		tfAusgabe.setText("");
-		tfAusgabe2.setText("");
 		btn1.setText("");
 		btn2.setText("");
 		btn3.setText("");
@@ -217,12 +223,15 @@ public class FensterKlasse extends JFrame {
 		contentPane.add(tfAusgabe);
 		tfAusgabe.setColumns(10);
 		
-		tfAusgabe2 = new JTextField();
-		tfAusgabe2.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		tfAusgabe2.setColumns(10);
-		tfAusgabe2.setBorder(null);
-		tfAusgabe2.setBackground(SystemColor.menu);
-		tfAusgabe2.setBounds(437, 214, 243, 100);
-		contentPane.add(tfAusgabe2);
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("1 Spieler");
+		buttonGroup.add(rdbtnNewRadioButton);
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setBounds(63, 477, 78, 35);
+		contentPane.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnSpieler = new JRadioButton("2 Spieler");
+		buttonGroup.add(rdbtnSpieler);
+		rdbtnSpieler.setBounds(158, 477, 78, 35);
+		contentPane.add(rdbtnSpieler);
 	}
 }

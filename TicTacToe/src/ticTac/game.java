@@ -2,7 +2,7 @@ package ticTac;
 
 public class game {
 	
-	private Boolean gameFinished;
+	private Boolean gameFinished = false;
 
 	public boolean gameStatus(String tf1, String tf2, String tf3, String tf4, String tf5, String tf6, String tf7, String tf8, String tf9)
 	{	
